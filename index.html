@@ -1,0 +1,117 @@
+<form name="form">
+	<script>
+		function proses() {
+			var kelas = document.form.kelas.value;
+			var tujuan = document.form.tujuan.value;
+			var hargaTiket = 0;
+	
+			if (kelas == "ekonomi") {
+				if (tujuan == "bandung") {
+					hargaTiket = 70000;
+				} else if (tujuan == "jakarta") {
+					hargaTiket = 100000;
+				} else if (tujuan == "surabaya") {
+					hargaTiket = 150000;
+				}
+			} else if (kelas == "bisnis") {
+				if (tujuan == "bandung") {
+					hargaTiket = 80000;
+				} else if (tujuan == "jakarta") {
+					hargaTiket = 150000;
+				} else if (tujuan == "surabaya") {
+					hargaTiket = 200000;
+				}
+			} else if (kelas == "eksekutif") {
+				if (tujuan == "bandung") {
+					hargaTiket = 90000;
+				} else if (tujuan == "jakarta") {
+					hargaTiket = 200000;
+				} else if (tujuan == "surabaya") {
+					hargaTiket = 300000;
+				}
+			}
+	
+			var jumlah = document.form.jumlah.value;
+			var subtotal = jumlah * hargaTiket;
+	
+			// Fasilitas tambahan
+			if (document.form.makan.checked) subtotal += 15000;
+			if (document.form.wifi.checked) subtotal += 10000;
+			if (document.form.minuman.checked) subtotal += 5000;
+	
+			// Menampilkan harga tiket ditambah fasilitas tambahan
+			document.form.tiket.value = subtotal;
+	
+			// Diskon
+			var diskon = 0;
+			if (jumlah > 3) {
+				diskon = 0.1 * subtotal;
+			}
+			document.form.diskon.value = diskon;
+	
+			// Menampilkan sub total
+			document.form.subtotal.value = subtotal;
+	
+			// Menghitung Total harga
+			var totalharga = subtotal - diskon;
+			document.form.totalharga.value = totalharga;
+		}
+	</script>
+	
+	
+	
+
+
+<meta name="viewport" content="width-device-width,initial scale=1">
+	<link rel="stylesheet" href="css/w3.css">
+		<div class="w3-container w3-animate-zoom">
+			<div class="w3-panel w3-red w3-card-4 w3-animate-top">
+				<center>
+				<p>
+					<h1> PENJUALAN TIKET KERET API </h1>
+			</div>
+				</center>
+			<div class="w3-panel w3-green w3-card-4">
+				<center>
+					<p>
+					<table border="0">
+						<tr><td>KOTA TUJUAN<td>:<td><select class="w3-select" name="tujuan">
+							<option name="tujuan" value="bandung">BANDUNG
+							<option name="tujuan" value="jakarta">JAKARTA
+							<option name="tujuan" value="surabaya">SURABAYA
+						<tr><td> KELAS <td>:<td><input class="w3-radio" type="radio" name="kelas" value="ekonomi" checked>EKOMOMI 
+						<tr><td>  <td>:<td><input class="w3-radio" type="radio" name="kelas" value="bisnis">BISNIS
+						<tr><td>  <td>:<td><input class="w3-radio" type="radio" name="kelas" value="eksekutif">EKSEKUTIF
+						<tr><td colspan="3">
+						
+						<hr>
+						
+						<tr><td>FASILITAS TAMBAHAN<td>:<td><input class="w3-check" type="checkbox" name="makan">MAKAN
+						<tr><td> <td>:<td><input class="w3-check" type="checkbox" name="wifi">WIFI
+						<tr><td> <td>:<td><input class="w3-check" type="checkbox" name="minuman">MINUMAN
+						
+						<br>
+						<br>
+						
+						<tr><td>JUMLAH<td>:<td><input class="w3-input" type="text" name="jumlah" style="width: 90px">
+						<tr><td colspan="3">
+						
+						<hr>
+						
+						<tr><td> HARGA TIKET + TAMBAHAN <td>:<td><input class="w3-input" type="text" name="tiket">
+						<tr><td> SUB TOTAL <td>:<td><input class="w3-input" type="text" name="subtotal">
+						<tr><td>  DISKON <td>:<td><input class="w3-input" type="text" name="diskon">
+						<tr><td>  TOTAL HARGA <td>:<td><input class="w3-input" type="text" name="totalharga">
+					</table>
+			</div>
+
+			<div class="w3-panel w3-yellow w3-card-4">
+				<center>
+					<p>
+					<input type="button" class="w3-button w3-red w3-round-xxlarge" value="proses" onclick="proses()">
+					<input type="button" class="w3-button w3-red w3-round-xxlarge" value="reset" onclick="reset()">
+					</p>
+				</center>
+			</div>
+		</div>
+</form>
